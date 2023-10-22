@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "860292438627",
+    "project_id": "authpractice-f1d44",
+    "storage_bucket": "authpractice-f1d44.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860292438627:android:1647d9d6e6cf69d528f656",
+        "android_client_info": {
+          "package_name": "com.example.auth_practice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860292438627-ln2h9uooo5uvteniqrj3sc1rfu4o5d7u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6LiW0hGxp7_0e7D06HGOjxNwSc57o0UE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860292438627-ln2h9uooo5uvteniqrj3sc1rfu4o5d7u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "860292438627-emg5rios5d8i2romcogn9tdeccp5gpjo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.authPractice"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860292438627:android:092eba407d52441128f656",
+        "android_client_info": {
+          "package_name": "com.example.house_rent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860292438627-ln2h9uooo5uvteniqrj3sc1rfu4o5d7u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6LiW0hGxp7_0e7D06HGOjxNwSc57o0UE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860292438627-ln2h9uooo5uvteniqrj3sc1rfu4o5d7u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "860292438627-emg5rios5d8i2romcogn9tdeccp5gpjo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.authPractice"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
