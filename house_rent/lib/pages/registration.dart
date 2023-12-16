@@ -112,7 +112,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       width: 243.0,
                       child: Align(
                           alignment: Alignment.center,
-                          child: Text("House Rent App",
+                          child: Text("Khooj The Search",
                               style: GoogleFonts.poppins(
                                   fontSize: 24.0,
                                   fontWeight: FontWeight.w600,
@@ -121,7 +121,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     SizedBox(
                       height: 1.0,
                     ),
-                    Text("Find Your Home",
+                    Text("House Rental System",
                         style: GoogleFonts.poppins(
                             fontSize: 24.0,
                             fontWeight: FontWeight.w600,

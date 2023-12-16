@@ -18,20 +18,6 @@ class AdvertisementNav extends StatefulWidget {
  
 List<dynamic> rentalTypes = [] ;
 Future<List<String>> getAllPosts() async {
-  //old part start
-// await FirebaseFirestore.instance
-//       .collection('posts')
-//       .doc('allposts')
-//       .collection('Rental-Details')
-//       .get()
-//       .then((snapshots) {
-//     rentalTypes = [];
-//    snapshots.docs.forEach((element) {
-//       // print(element.data());
-//      rentalTypes.add(element.data());
-//     });
-//   });
-                    //old part end
  int? postno;
     final getpostnumber;
     DocumentSnapshot? documentSnapshot = await FirebaseFirestore.instance
@@ -54,7 +40,7 @@ Future<List<String>> getAllPosts() async {
      rentalTypes.add(element.data());
     });
   });
-  return querySnapshot;
+  return querySnapshot  ;
 }
 
 
@@ -108,6 +94,7 @@ Future<List<Map<String, dynamic>>> getImagesFromStorage(int index) async {
     });
     return 
     Scaffold(
+      backgroundColor: Colors.white,
       // appBar: PreferredSize(
       //   preferredSize: Size.fromHeight(60.0),
       //   child: SafeArea(
@@ -233,7 +220,7 @@ Future<List<Map<String, dynamic>>> getImagesFromStorage(int index) async {
                     Timestamp getdate = rentalTypes[index]['rentDate'];
                     DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(getdate.seconds * 1000);
                     return GestureDetector(onTap:() {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PostViewDetails(rentType: rentalTypes[index],imageurl: imageUrls,uid : Uid,date :dateTime)));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PostViewDetails(rentType: rentalTypes[index],imageurl: imageUrls,uid : Uid,date :dateTime )));
                     }, 
                     child: PostItem(imageurls: imageUrls, description: details, price: rent,date: dateTime));
                   }

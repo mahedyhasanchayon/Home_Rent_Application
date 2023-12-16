@@ -84,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                     width: 243.0,
                     child: Align(
                         alignment: Alignment.center,
-                        child: Text("House Rent App",
+                        child: Text("Khooj The Search",
                             style: GoogleFonts.poppins(
                                 fontSize: 24.0,
                                 fontWeight: FontWeight.w600,
@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                   SizedBox(
                     height: 1.0,
                   ),
-                  Text("Find Your Home",
+                  Text("House Rental System",
                       style: GoogleFonts.poppins(
                           fontSize: 24.0,
                           fontWeight: FontWeight.w600,

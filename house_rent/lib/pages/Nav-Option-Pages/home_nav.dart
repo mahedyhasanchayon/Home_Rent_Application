@@ -428,13 +428,15 @@ class NoticeMsg extends StatelessWidget {
           border: Border.all(color: Colors.black12),
           image: DecorationImage(image: AssetImage("assets/images/findhouse.png"),alignment: Alignment.centerRight,fit: BoxFit.fitHeight)
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("পছন্দের এলাকা সেট করুন",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16.0),),
-            SizedBox(height: 5.0,),
-            Text("আপনি যেই এলাকাতে বাসা ভাড়া \nনিতে ইচ্ছুক",style: TextStyle(fontWeight: FontWeight.w600,color: Colors.black54)),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("পছন্দের এলাকা সেট করুন",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16.0),),
+              SizedBox(height: 5.0,),
+              Text("আপনি যেই এলাকাতে বাসা ভাড়া \nনিতে ইচ্ছুক",style: TextStyle(fontWeight: FontWeight.w600,color: Colors.black54)),
+            ],
+          ),
         ),
       ),
     );

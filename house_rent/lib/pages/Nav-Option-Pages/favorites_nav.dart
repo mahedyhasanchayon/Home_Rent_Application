@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FavoriteNav extends StatelessWidget {
   const FavoriteNav({super.key});
+void _makePhoneCall() async {
+  const phoneNumber = '01639305679'; // replace with the desired phone number
+  // ignore: deprecated_member_use
+  if (await canLaunch(phoneNumber)) {
+    // ignore: deprecated_member_use
+    await launch(phoneNumber);
+  } else {
+    throw 'Could not launch $phoneNumber';
+  }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +50,7 @@ class FavoriteNav extends StatelessWidget {
                 ),
                 SizedBox(width: 8.0),
                 Text(
-                  "বাড়ি বদল",
+                  "Khooj The Search",
                   style: GoogleFonts.openSans(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
@@ -60,7 +72,8 @@ class FavoriteNav extends StatelessWidget {
             SizedBox(height: 120,),
             SvgPicture.asset("assets/images/house_search.svg",height: 80,width:80,),
             SizedBox(height: 50.0,),
-            Text("আপনার এই মুহূর্তে কোনো পছন্দের বিজ্ঞাপন নেই,\nপছন্দের বিজ্ঞাপন গুলো এখানে একত্রিত থাকবে।",style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),)
+            Text("আপনার এই মুহূর্তে কোনো পছন্দের বিজ্ঞাপন নেই,\nপছন্দের বিজ্ঞাপন গুলো এখানে একত্রিত থাকবে।",style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500),),
+            ElevatedButton(onPressed:_makePhoneCall, child: Text("data"))
           ],
         ),
       ),

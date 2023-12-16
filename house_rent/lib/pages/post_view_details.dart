@@ -366,7 +366,7 @@ class _PostViewDetailsState extends State<PostViewDetails> {
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(color:Colors.black12 )
                           ),
-                          child: ListTile(leading: CircleAvatar(backgroundColor: Color.fromARGB(8, 0, 0, 0), child: Icon(Icons.person_outlined,size: 30,color: Colors.black26,),) ,title: Text('${userinfo!['name']}') ,subtitle: Text('0${userinfo!['phone']}') )
+                          child: ListTile(leading: CircleAvatar(backgroundColor: Color.fromARGB(8, 0, 0, 0), child: Icon(Icons.person_outlined,size: 30,color: Colors.black26,),) ,title: Text('${userinfo!['name']}') ,subtitle: Text('${userinfo!['phone']}') )
                         ) ?? CircularProgressIndicator(),
                 Padding(
                     padding: const EdgeInsets.only(top: 20,bottom: 15),

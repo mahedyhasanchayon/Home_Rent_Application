@@ -48,7 +48,7 @@ Future<void> getAllPosts() async {
       for (var document in documentname) {
       docname = document.id.toString();
     }
-      
+      print("Doc name is = $docname");
   });
 return querySnapshot;
 }
@@ -76,7 +76,7 @@ Future<List<Map<String, dynamic>>> getImagesFromStorage(int index) async {
 
   try {
     // Replace 'your_folder_path' with the actual path to your images in Firebase Storage
-    final ListResult result = await storage.ref('posts').child(docname).listAll();
+    final ListResult result = await storage.ref('posts').child('post$index').listAll();
     for (final Reference reference in result.items) {
       final String imageUrl = await reference.getDownloadURL();
 
@@ -87,8 +87,6 @@ Future<List<Map<String, dynamic>>> getImagesFromStorage(int index) async {
       _imageUrls.add(imageMap);
       imageList.add(imageMap);
     }
-
- 
     return imageList;
   } catch (e) {
     // Handle errors here
@@ -107,6 +105,7 @@ Future<List<Map<String, dynamic>>> getImagesFromStorage(int index) async {
     //   body: SafeArea(child: Text('data')),
     // );
     Scaffold(
+      backgroundColor: Colors.white,
       // appBar: PreferredSize(
       //   preferredSize: Size.fromHeight(60.0),
       //   child: SafeArea(
@@ -225,7 +224,8 @@ Future<List<Map<String, dynamic>>> getImagesFromStorage(int index) async {
                   shrinkWrap: true,
                   itemCount: ownrentalTypes.length,
                   itemBuilder: (BuildContext context,index){
-                    Future<List<Map<String, dynamic>>> imageUrls =  getImagesFromStorage(index);
+                    int imgads = ownrentalTypes[index]["postno"];
+                    Future<List<Map<String, dynamic>>> imageUrls =  getImagesFromStorage(imgads);
                     String details = ownrentalTypes[index]['houseDetails'];
                     String rent = ownrentalTypes[index]['rent'];
                     String Uid = ownrentalTypes[index]['UID']; 
@@ -235,6 +235,7 @@ Future<List<Map<String, dynamic>>> getImagesFromStorage(int index) async {
                       Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PostViewDetails(rentType: ownrentalTypes[index],imageurl: imageUrls,uid : Uid,date :dateTime)));
                     }, 
                     child: PostItem(imageurls: imageUrls, description: details, price: rent,date: dateTime));
+                    
                   }
                   ),
               ),

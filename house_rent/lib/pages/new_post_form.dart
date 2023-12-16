@@ -1,8 +1,11 @@
+
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:house_rent/mock/create/rental_type.dart';
+import 'package:house_rent/pages/Landing/landing.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -13,6 +16,7 @@ class CreateRentPostScreen extends StatefulWidget {
   _CreateRentPostScreenState createState() => _CreateRentPostScreenState();
 }
  int _currentStep = 0;
+ int? currentpost ;
 class _CreateRentPostScreenState extends State<CreateRentPostScreen> {
  
   bool ? value;
@@ -679,9 +683,19 @@ void checkLoginStatus() async {
     String? uid = prefs.getString('uid');
     Uid =uid;
     print('uid is $Uid');
+    DocumentSnapshot? documentSnapshot = await FirebaseFirestore.instance
+      .collection('postserial')
+      .doc('postnumber')
+      .get();
+int? postno;
+final getpostnumber;
+getpostnumber = documentSnapshot.data();
+postno = getpostnumber['postno'];
+currentpost = postno;
   }
 class _Step3FormState extends State<Step3Form> {
 
+String errormsg = '';
 List<File> _imageFiles = [];
 
   Future<void> _getImages() async {
@@ -749,9 +763,28 @@ FocusScope.of(context).requestFocus(FocusNode());
             ),
             ElevatedButton(
               onPressed: () {
-                checkLoginStatus();
+
+            if(_imageFiles.isEmpty || rentamount.text.isEmpty||sqaurefeet.text.isEmpty||electricitybill.text.isEmpty||gasbill.text.isEmpty||waterbill.text.isEmpty||serviceCharge.text.isEmpty||rentFromTime.toString().isEmpty||areaname.text.isEmpty||address.text.isEmpty||description.text.isEmpty||selectedreligion.isEmpty||_selectedrentType.isEmpty||_bedno.toString().isEmpty||_washno.toString().isEmpty||_barandano.toString().isEmpty||_flatno.toString().isEmpty){
+              setState(() {
+                AlertDialog(actions: [Text('Please fill all fields.')],);
+                // errormsg = 'Please fill all fields.';
+              });
+              return ;
+            }else{
+
+checkLoginStatus();
+addPost(Uid!, postdetails,_imageFiles);
+Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+              LandingPage(),
+        ),
+      );
+            }
+                
                 // uploadImages(Uid!, _imageFiles);
-                addPost(Uid!, postdetails,_imageFiles);
+                
               // createPost(Uid!, postdetails);
               // createRentalOtherFacilities(Uid!, otherFacilitiesData);
               // createRentalDetails(Uid!, rentalDetailsData);
@@ -761,6 +794,10 @@ FocusScope.of(context).requestFocus(FocusNode());
               },
               child: Text('Upload Images'),
             ),
+            Text(
+                  errormsg,
+                  style: TextStyle(color: Colors.red),
+                ),
           //   Row(
           //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
           //         children: [
@@ -874,7 +911,9 @@ class _NumberStepperState extends State<NumberStepper> {
 }
 
 var postdetails = {
+
   "UID" : Uid,
+  "postno": currentpost,
   "lift" : hasLift,
   "generator": hasGenarators,
   "securityGuard": hasSecurityGuard,
@@ -1119,6 +1158,12 @@ int incriment = postno!+1;
 
   // Add post data to Firestore
   await firestore.collection('posts').doc('post$postno').set(postData);
+
+
+
+
+
+
   for (int i = 0; i < images.length; i++) {
       final image = images[i];
       final imageRef = storage.ref().child('posts/post$postno/image$i.jpg');
