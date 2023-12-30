@@ -4,16 +4,20 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FavoriteNav extends StatelessWidget {
-  const FavoriteNav({super.key});
+   FavoriteNav({super.key});
+
+  Uri dialnumber = Uri(scheme: 'tel',path: '01639305679');
 void _makePhoneCall() async {
-  const phoneNumber = '01639305679'; // replace with the desired phone number
-  // ignore: deprecated_member_use
-  if (await canLaunch(phoneNumber)) {
-    // ignore: deprecated_member_use
-    await launch(phoneNumber);
-  } else {
-    throw 'Could not launch $phoneNumber';
-  }
+await launchUrl(dialnumber);
+
+  // const phoneNumber = '01639305679'; // replace with the desired phone number
+  // // ignore: deprecated_member_use
+  // if (await canLaunch(phoneNumber)) {
+  //   // ignore: deprecated_member_use
+  //   await launch(phoneNumber);
+  // } else {
+  //   throw 'Could not launch $phoneNumber';
+  // }
 }
 
 

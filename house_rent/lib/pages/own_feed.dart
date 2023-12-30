@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:house_rent/pages/new_post_form.dart';
 import 'package:house_rent/pages/post_view_details.dart';
 import 'package:intl/intl.dart';
@@ -106,48 +107,48 @@ Future<List<Map<String, dynamic>>> getImagesFromStorage(int index) async {
     // );
     Scaffold(
       backgroundColor: Colors.white,
-      // appBar: PreferredSize(
-      //   preferredSize: Size.fromHeight(60.0),
-      //   child: SafeArea(
-      //     child: Container(
-      //       padding: EdgeInsets.all(8.0),
-      //       decoration: BoxDecoration(
-      //         boxShadow: [
-      //           BoxShadow(
-      //             color: Colors.grey.withOpacity(0.5),
-      //             spreadRadius: 5,
-      //             blurRadius: 7,
-      //             offset: Offset(0, 3), // changes position of shadow
-      //           ),
-      //         ],
-      //         color: Color.fromARGB(
-      //             255, 248, 250, 250), // Background color of AppBar
-      //         borderRadius: BorderRadius.vertical(
-      //           bottom: Radius.circular(20.0), // Rounded bottom corners
-      //         ),
-      //       ),
-      //       child: Row(
-      //         children: [
-      //           IconButton(
-      //             icon: Icon(Icons.meeting_room_sharp,size: 30,color: Color.fromARGB(255, 250, 70, 70),),
-      //             onPressed: () {
-      //               // Add logic to handle back navigation if needed
-      //             },
-      //           ),
-      //           SizedBox(width: 8.0),
-      //           Text(
-      //             "সকল বিজ্ঞাপন",
-      //             style: GoogleFonts.openSans(
-      //                 fontSize: 22,
-      //                 fontWeight: FontWeight.bold,
-      //                 color: Color.fromARGB(255, 250, 70, 70)),
-      //           ),
-      //           Spacer(), // Adds flexible space between title and actions
-      //         ],
-      //       ),
-      //     ),
-      //   ),
-      // ),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60.0),
+        child: SafeArea(
+          child: Container(
+            padding: EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3), // changes position of shadow
+                ),
+              ],
+              color: Color.fromARGB(
+                  255, 248, 250, 250), // Background color of AppBar
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(20.0), // Rounded bottom corners
+              ),
+            ),
+            child: Row(
+              children: [
+                IconButton(
+                  icon: Icon(Icons.meeting_room_sharp,size: 30,color: Color.fromARGB(255, 250, 70, 70),),
+                  onPressed: () {
+                    // Add logic to handle back navigation if needed
+                  },
+                ),
+                SizedBox(width: 8.0),
+                Text(
+                  "নিজের বিজ্ঞাপন",
+                  style: GoogleFonts.openSans(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 250, 70, 70)),
+                ),
+                Spacer(), // Adds flexible space between title and actions
+              ],
+            ),
+          ),
+        ),
+      ),
       body:FutureBuilder(
     future: getAllPosts(),
     builder: (context, snapshot) {
@@ -169,7 +170,7 @@ Future<List<Map<String, dynamic>>> getImagesFromStorage(int index) async {
         },
         label: Text('ফ্রি পোস্ট করুন'),
         icon: Icon(Icons.add),
-        backgroundColor: const Color.fromARGB(255, 53, 54, 54), // Customize the button color
+        backgroundColor: Color.fromARGB(255, 255, 255, 255), // Customize the button color
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat, // Adjust button location
     );
@@ -185,7 +186,7 @@ Future<List<Map<String, dynamic>>> getImagesFromStorage(int index) async {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              FilterBar(),
+              // FilterBar(),
     //           Container(
     //             height: 400,
     //             width: double.infinity,
@@ -229,12 +230,13 @@ Future<List<Map<String, dynamic>>> getImagesFromStorage(int index) async {
                     String details = ownrentalTypes[index]['houseDetails'];
                     String rent = ownrentalTypes[index]['rent'];
                     String Uid = ownrentalTypes[index]['UID']; 
+                    String renttype = ownrentalTypes[index]['rentType'];
                     Timestamp getdate = ownrentalTypes[index]['rentDate'];
                     DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(getdate.seconds * 1000);
                     return GestureDetector(onTap:() {
                       Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PostViewDetails(rentType: ownrentalTypes[index],imageurl: imageUrls,uid : Uid,date :dateTime)));
                     }, 
-                    child: PostItem(imageurls: imageUrls, description: details, price: rent,date: dateTime));
+                    child: PostItem(imageurls: imageUrls, description: details, price: rent,date: dateTime,rentType:renttype));
                     
                   }
                   ),
@@ -257,12 +259,14 @@ class PostItem extends StatelessWidget {
   final DateTime date;
   final String description;
   final String price;
+  final String rentType;
   final Future<List<Map<String, dynamic>>> imageurls;
   const PostItem({
    required this.description,
    required this.price,
    required this.imageurls,
-   required this.date
+   required this.date,
+   required this.rentType
   });
 String getFormattedDate() {
   String monthName = DateFormat('MMMM').format(date);
@@ -295,7 +299,7 @@ String getFormattedDate() {
                 children: [
                   Icon(Icons.apartment_outlined,color: Colors.white,),
                   SizedBox(width: 5.0,),
-                  Text("ফ্ল্যাট",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500),),
+                  Text(rentType,style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500),),
                   SizedBox(width: 10.0,),
                   Icon(Icons.calendar_month_outlined,color: Colors.white,),
                   SizedBox(width: 5.0,),

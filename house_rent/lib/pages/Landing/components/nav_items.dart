@@ -6,7 +6,7 @@ List<BottomNavigationBarItem> get navItems {
     BottomNavigationBarItem(
         icon: Icon(Icons.list_alt_outlined), label: 'সকল বিজ্ঞাপন',),
     BottomNavigationBarItem(
-        icon: Icon(Icons.favorite_border_sharp), label: 'পছন্দ সমূহ'),
+        icon: Icon(Icons.favorite_border_sharp), label: 'আমার বিজ্ঞাপন'),
     BottomNavigationBarItem(
         icon: Icon(Icons.person), label:  'অ্যাকাউন্ট'),
   ];

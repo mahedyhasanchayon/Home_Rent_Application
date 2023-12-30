@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:house_rent/pages/new_post_form.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PostViewDetails extends StatefulWidget {
 String uid ;
@@ -31,12 +32,19 @@ class _PostViewDetailsState extends State<PostViewDetails> {
     });
     
   }
+
+ 
+void _makePhoneCall() async {
+   Uri dialnumber = Uri(scheme: 'tel',path: '0${userinfo!['phone']}');
+await launchUrl(dialnumber);
+}
   String getFormattedDate() {
   String time = DateFormat('MMMM dd, yyyy').format(widget.date);
   // DateFormat('MMMM dd, yyyy').format(date);
     // Format the selected date to include the month name
     return time;
   }
+    
   @override
   Widget build(BuildContext context) {
     setState(() {
@@ -355,19 +363,22 @@ class _PostViewDetailsState extends State<PostViewDetails> {
                     padding: const EdgeInsets.only(top: 20,bottom: 15),
                     child: Text('বাসা সম্পর্কে',style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),),
                   ),
-                  Text('Full time & painting',style: TextStyle(fontWeight: FontWeight.w500,fontSize: 13)),
+                  Text(widget.rentType['houseDetails'],style: TextStyle(fontWeight: FontWeight.w500,fontSize: 13)),
                   Padding(
                     padding: const EdgeInsets.only(top: 20,bottom: 15),
                     child: Text('বিজ্ঞাপন দাতা',style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),),
                   ),
-                  Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color:Colors.black12 )
-                          ),
-                          child: ListTile(leading: CircleAvatar(backgroundColor: Color.fromARGB(8, 0, 0, 0), child: Icon(Icons.person_outlined,size: 30,color: Colors.black26,),) ,title: Text('${userinfo!['name']}') ,subtitle: Text('${userinfo!['phone']}') )
-                        ) ?? CircularProgressIndicator(),
+                  GestureDetector(
+                    onTap: _makePhoneCall,
+                    child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color:Colors.black12 )
+                            ),
+                            child: ListTile(leading: CircleAvatar(backgroundColor: Color.fromARGB(8, 0, 0, 0), child: Icon(Icons.person_outlined,size: 30,color: Colors.black26,),) ,title: Text('${userinfo!['name']}') ,subtitle: Text('${userinfo!['phone']}') )
+                          ) ?? CircularProgressIndicator(),
+                  ),
                 Padding(
                     padding: const EdgeInsets.only(top: 20,bottom: 15),
                     child: Text('লেনদেন এর সময় সতর্ক থাকুন',style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),),
