@@ -176,10 +176,10 @@ FutureBuilder(
                     ),
                           ),
                     
-                    ListTile(
-                      leading: Icon(Icons.lock_outline,color: Colors.black,),
-                      title: Text("পাসওয়ার্ড পরিবর্তন",style: TextStyle(fontWeight: FontWeight.w500),),
-                    ),
+                    // ListTile(
+                    //   leading: Icon(Icons.lock_outline,color: Colors.black,),
+                    //   title: Text("পাসওয়ার্ড পরিবর্তন",style: TextStyle(fontWeight: FontWeight.w500),),
+                    // ),
                     SizedBox(height: 20.0,)
                   ],
                 ),
@@ -284,18 +284,18 @@ FutureBuilder(
                     ),
                           ),
                     
-                    ListTile(
-                      leading: Icon(Icons.pest_control_outlined,color: Colors.black,),
-                      title: Text("সমস্যা সাবমিট করুন",style: TextStyle(fontWeight: FontWeight.w500),),
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.chat_outlined,color: Colors.black,),
-                      title: Text("ফিডব্যাক দিন",style: TextStyle(fontWeight: FontWeight.w500),),
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.turn_right_outlined,color: Colors.black,),
-                      title: Text("অ্যাপ শেয়ার করুন",style: TextStyle(fontWeight: FontWeight.w500),),
-                    ),
+                    // ListTile(
+                    //   leading: Icon(Icons.pest_control_outlined,color: Colors.black,),
+                    //   title: Text("সমস্যা সাবমিট করুন",style: TextStyle(fontWeight: FontWeight.w500),),
+                    // ),
+                    // ListTile(
+                    //   leading: Icon(Icons.chat_outlined,color: Colors.black,),
+                    //   title: Text("ফিডব্যাক দিন",style: TextStyle(fontWeight: FontWeight.w500),),
+                    // ),
+                    // ListTile(
+                    //   leading: Icon(Icons.turn_right_outlined,color: Colors.black,),
+                    //   title: Text("অ্যাপ শেয়ার করুন",style: TextStyle(fontWeight: FontWeight.w500),),
+                    // ),
                     GestureDetector(
                             onTap: () {
                               showDialog(
